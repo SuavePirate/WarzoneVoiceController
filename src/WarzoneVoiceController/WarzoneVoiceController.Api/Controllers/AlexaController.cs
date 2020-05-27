@@ -39,7 +39,7 @@ namespace WarzoneVoiceController.Api.Controllers
                 _warzoneHub.Clients.All.SendAsync(intentRequest.Intent.Name);
                 switch (intentRequest.Intent.Name)
                 {
-                    case "UseItemIntent": return ResponseBuilder.Tell("You are using an item");
+                    case "ReloadIntent": return ResponseBuilder.Tell("You are reloading");
                     case "ArmorIntent": return ResponseBuilder.Tell("You are puting on armor");
                     case "SprintIntent": return ResponseBuilder.Tell("You are sprinting");
                     case "AttackIntent": return ResponseBuilder.Tell("You are attacking");
@@ -48,7 +48,7 @@ namespace WarzoneVoiceController.Api.Controllers
                     case "EnemyPingIntent": return ResponseBuilder.Tell("You are pinging bad guys");
                     case "CutChuteIntent": return ResponseBuilder.Tell("You are cutting your chute");
                     case "JumpIntent": return ResponseBuilder.Tell("You are jumping");
-                    case "ParryIntent": return ResponseBuilder.Tell("You are parrying");
+                    case "CrouchIntent": return ResponseBuilder.Tell("You are crouching");
                     case "ProneIntent": return ResponseBuilder.Tell("You are prone");
                 }
             }

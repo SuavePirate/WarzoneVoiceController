@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarzoneVoiceController.Core.Models", "WarzoneVoiceController.Core.Models\WarzoneVoiceController.Core.Models.csproj", "{C68AAC32-D4DA-4F58-AF82-FD258CA08817}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarzoneVoiceController.Core.Models", "WarzoneVoiceController.Core.Models\WarzoneVoiceController.Core.Models.csproj", "{C68AAC32-D4DA-4F58-AF82-FD258CA08817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarzoneVoiceController.Api", "WarzoneVoiceController.Api\WarzoneVoiceController.Api.csproj", "{8EE7EDBA-8512-4D92-AAB1-FA798B0341B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarzoneVoiceController.Api", "WarzoneVoiceController.Api\WarzoneVoiceController.Api.csproj", "{8EE7EDBA-8512-4D92-AAB1-FA798B0341B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarzoneVoiceController.Client", "WarzoneVoiceController.Client\WarzoneVoiceController.Client.csproj", "{7E7E7F07-7438-45AC-8607-BC8FB6C46FAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarzoneVoiceController.WinFormsClient", "WarzoneVoiceController.WinFormsClient\WarzoneVoiceController.WinFormsClient.csproj", "{B28B5DE8-91B1-4F0E-97B9-1192F555665B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,26 @@ Global
 		{7E7E7F07-7438-45AC-8607-BC8FB6C46FAE}.Release|x86.ActiveCfg = Release|x86
 		{7E7E7F07-7438-45AC-8607-BC8FB6C46FAE}.Release|x86.Build.0 = Release|x86
 		{7E7E7F07-7438-45AC-8607-BC8FB6C46FAE}.Release|x86.Deploy.0 = Release|x86
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Debug|ARM.Build.0 = Debug|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Debug|x64.Build.0 = Debug|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Debug|x86.Build.0 = Debug|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Release|ARM.Build.0 = Release|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Release|ARM64.Build.0 = Release|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Release|x64.ActiveCfg = Release|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Release|x64.Build.0 = Release|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Release|x86.ActiveCfg = Release|Any CPU
+		{B28B5DE8-91B1-4F0E-97B9-1192F555665B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

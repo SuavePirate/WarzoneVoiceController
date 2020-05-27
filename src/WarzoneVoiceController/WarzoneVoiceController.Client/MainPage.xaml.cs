@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -49,10 +50,10 @@ namespace WarzoneVoiceController.Client
                 return Task.CompletedTask;
             };
 
-            connection.On("UseItemIntent", () =>
+            connection.On("ReloadIntent", () =>
             {
                 HitKey(VirtualKey.R);
-                CommandLog.Text += "\nUsing Item";
+                CommandLog.Text += "\nReloading";
             });
 
             connection.On("ArmorIntent", () =>
@@ -92,10 +93,11 @@ namespace WarzoneVoiceController.Client
                 HitKey(VirtualKey.Space);
                 CommandLog.Text += "\nJumping";
             });
-            connection.On("ParryIntent", () =>
+            connection.On("CrouchIntent", () =>
             {
                 HitKey(VirtualKey.LeftControl);
-                CommandLog.Text += "\nParrying";
+                HitLowLevelKey();
+                CommandLog.Text += "\nCrouching";
             });
             connection.On("ProneIntent", () =>
             {
@@ -111,6 +113,21 @@ namespace WarzoneVoiceController.Client
             var keyInfo = new InjectedInputKeyboardInfo();
             keyInfo.VirtualKey = (ushort)key;
             inputInjector.InjectKeyboardInput(new[] { keyInfo });
+        }
+        // Import the user32.dll
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+
+
+        public const int KEYEVENTF_EXTENDEDKEY = 0x0001; //Key down flag
+        public const int KEYEVENTF_KEYUP = 0x0002; //Key up flag
+        public const int VK_RCONTROL = 0xA3; //Right Control key code
+
+
+        private void HitLowLevelKey()
+        {
+            keybd_event(VK_RCONTROL, 0, KEYEVENTF_EXTENDEDKEY, 0);
+            keybd_event(VK_RCONTROL, 0, KEYEVENTF_KEYUP, 0);
         }
 
         private void LeftClick()
