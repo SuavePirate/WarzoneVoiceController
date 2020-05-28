@@ -40,7 +40,7 @@ namespace WarzoneVoiceController.Api.Controllers
                 switch (intentRequest.Intent.Name)
                 {
                     case "ReloadIntent": return ResponseBuilder.Tell("You are reloading");
-                    case "ArmorIntent": return ResponseBuilder.Tell("You are puting on armor");
+                    case "ArmorIntent": return ResponseBuilder.Tell("You are putting on armor");
                     case "SprintIntent": return ResponseBuilder.Tell("You are sprinting");
                     case "AttackIntent": return ResponseBuilder.Tell("You are attacking");
                     case "ShieldIntent": return ResponseBuilder.Tell("You are using your shield");
@@ -50,10 +50,14 @@ namespace WarzoneVoiceController.Api.Controllers
                     case "JumpIntent": return ResponseBuilder.Tell("You are jumping");
                     case "CrouchIntent": return ResponseBuilder.Tell("You are crouching");
                     case "ProneIntent": return ResponseBuilder.Tell("You are prone");
+
+                    case "AMAZON.HelpIntent": return ResponseBuilder.Ask("Happy to help! You can issue commands such as 'jump', 'reload', 'put on shields' and more! Try saying one of those.", null);
+                    case "AMAZON.StopIntent":
+                    case "AMAZON.CancelIntent": return ResponseBuilder.Tell("Thanks for using the Warzone Controller. Come back later.");
                 }
             }
 
-            return ResponseBuilder.Tell("You said something I dont' know what to do with. Bye.");
+            return ResponseBuilder.Ask("You said something I don't know what to do with. Try saying something like 'jump' or 'reload'.", null);
         }
     }
 }

@@ -9,6 +9,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsInput;
+using WindowsInput.Native;
 
 namespace WarzoneVoiceController.WinFormsClient
 {
@@ -43,7 +45,11 @@ namespace WarzoneVoiceController.WinFormsClient
 
             connection.On("ArmorIntent", () =>
             {
-                Console.WriteLine("Putting on armor");
+                Console.WriteLine("Putting on armor"); 
+                var sim = new InputSimulator();
+
+                // Press 0 key
+                sim.Keyboard.KeyPress(VirtualKeyCode.VK_4);
             });
             connection.On("SprintIntent", () =>
             {
