@@ -8,12 +8,45 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Page.Resources>
+        <CollectionViewSource x:Name="DeviceListSource"/>
+    </Page.Resources>
+    
+    <StackPanel>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid x:Name="RootGrid" Margin="12,20,12,12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock Text="Device Selection"/>
+                </StackPanel>
+                <ScrollViewer Grid.Row="1" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Vertical" Margin="0,10,0,0" Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Grid.Row="1">
+                            <Button x:Name="ButtonConnectToDevice" Content="Connect to device" Margin="0,0,10,0" Click="ConnectToDevice_Click"/>
+                            <Button x:Name="ButtonDisconnectFromDevice" Content="Disconnect from device" Margin="0,0,10,0" Click="DisconnectFromDevice_Click"/>
+                        </StackPanel>
+                        <TextBlock Text="Select an Arduino Device:"/>
+                        <ListBox x:Name="ConnectDevices" ItemsSource="{Binding Source={StaticResource DeviceListSource}}"  Height="250" Background="Gray">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding InstanceId}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- Status Block for providing messages to the user.  Use the
+             NotifyUser() method to populate the message -->
+                <Border x:Name="ErrorBorder" Background="Red" Grid.Row="2"/>
+                <TextBlock x:Name="StatusBlock" Grid.Row="2" Margin="12, 10, 12, 10" Visibility="Collapsed"/>
+            </Grid>
+        </Grid>
         <Button x:Name="ConnectButton" Grid.Row="0" Click="Button_Click" VerticalAlignment="Center" HorizontalAlignment="Center">Connect to remote controller</Button>
         <TextBlock x:Name="CommandLog" Grid.Row="1" Text="Command Log" HorizontalAlignment="Center"/>
-    </Grid>
+    </StackPanel>
 </Page>
