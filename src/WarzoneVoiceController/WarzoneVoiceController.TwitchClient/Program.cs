@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using TwitchLib.Client.Enums;
 using TwitchLib.Client.Events;
 using TwitchLib.Client.Extensions;
@@ -23,7 +24,7 @@ namespace WarzoneVoiceController.TwitchClient
 
         public Bot()
         {
-            var credentials = new ConnectionCredentials("twitch_username", "access_token");
+            var credentials = new ConnectionCredentials(Keys.TwitchAccount, Keys.TwitchToken);
             var clientOptions = new ClientOptions
             {
                 MessagesAllowedInPeriod = 750,
@@ -31,7 +32,7 @@ namespace WarzoneVoiceController.TwitchClient
             };
             var customClient = new WebSocketClient(clientOptions);
             client = new TwitchClientObject(customClient);
-            client.Initialize(credentials, "channel");
+            client.Initialize(credentials, Keys.TwitchChannel);
 
             client.OnLog += Client_OnLog;
             client.OnJoinedChannel += Client_OnJoinedChannel;
@@ -59,11 +60,51 @@ namespace WarzoneVoiceController.TwitchClient
             client.SendMessage(e.Channel, "Hey guys! I am a bot connected via TwitchLib!");
         }
 
-        private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
+        private async void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
         {
-            if (e.ChatMessage.Message.Contains("badword"))
-                client.TimeoutUser(e.ChatMessage.Channel, e.ChatMessage.Username, TimeSpan.FromMinutes(30), "Bad word! 30 minute timeout!");
-        }
+            // Get the message. Validate it is a command with "!". Then send to API to then route
+            using (var client = new HttpClient())
+            {
+                var command = "FallbackIntent";
+                switch(e.ChatMessage.Message)
+                {
+                    case "!reload": command = "ReloadIntent";
+                        break;
+                    case "!map":
+                        command = "MapIntent";
+                        break;
+                    case "!forward":
+                        command = "MoveForwardIntent";
+                        break;
+                    case "!backwards":
+                        command = "MoveBackwardsIntent";
+                        break;
+                    case "!left":
+                        command = "MoveLeftIntent";
+                        break;
+                    case "!right":
+                        command = "MoveRightIntent";
+                        break;
+                    case "!ping":
+                        command = "PingIntent";
+                        break;
+                    case "!sprint":
+                        command = "SprintIntent";
+                        break;
+                    case "!crouch":
+                        command = "CrouchIntent";
+                        break;
+                    case "!shoot":
+                        command = "AttackIntent";
+                        break;
+
+                }
+
+                var response = await client.PostAsync($"https://warzonevoicecontroller.azurewebsites.net/api/command/{command}", null);
+                Console.WriteLine(response);
+            }
+
+}
 
         private void Client_OnWhisperReceived(object sender, OnWhisperReceivedArgs e)
         {
