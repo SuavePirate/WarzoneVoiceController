@@ -32,6 +32,10 @@ void setup() {
   serialCommand.addCommand("item", UseItem );
   serialCommand.addCommand("swap", SwapWeapon );
   serialCommand.addCommand("killstreak", Killstreak );
+  serialCommand.addCommand("shoot", Shoot );
+  serialCommand.addCommand("aim", Aim );
+  serialCommand.addCommand("grenade", Grenade );
+  serialCommand.addCommand("altgrenade", AlternateGrenade );
 
   serialCommand.addCommand("debug", SetDebug );
   serialCommand.setDefaultHandler(UnrecognizedCommand );
@@ -49,6 +53,12 @@ void Reload() {
 }
 void UseItem() {
   SendBasicKeyCommand('f');
+}
+void Shoot() {
+  SendBasicKeyCommand('9');
+}
+void Aim() {
+  SendBasicKeyCommand('0');
 }
 void Map() {
   SendBasicKeyCommand('m');
@@ -72,6 +82,12 @@ void CutChute() {
 }
 void Jump() {
   SendBasicKeyCommand(' ');
+}
+void Grenade() {
+  SendBasicKeyCommand('g');
+}
+void AlternateGrenade() {
+  SendBasicKeyCommand('q');
 }
 void Crouch() {
   SendBasicKeyCommand(KEY_LEFT_CTRL);

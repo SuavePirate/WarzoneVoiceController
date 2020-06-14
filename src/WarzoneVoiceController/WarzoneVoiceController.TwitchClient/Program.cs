@@ -56,8 +56,9 @@ namespace WarzoneVoiceController.TwitchClient
 
         private void Client_OnJoinedChannel(object sender, OnJoinedChannelArgs e)
         {
-            Console.WriteLine("Hey guys! I am a bot connected via TwitchLib!");
-            client.SendMessage(e.Channel, "Hey guys! I am a bot connected via TwitchLib!");
+            var message = "Hey guys! I am a bot that lets you shout warzone commands. Try something like !jump or !reload";
+            Console.WriteLine(message);
+            client.SendMessage(e.Channel, message);
         }
 
         private async void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
@@ -66,45 +67,52 @@ namespace WarzoneVoiceController.TwitchClient
             using (var client = new HttpClient())
             {
                 var command = "FallbackIntent";
-                switch(e.ChatMessage.Message)
-                {
-                    case "!reload": command = "ReloadIntent";
-                        break;
-                    case "!map":
-                        command = "MapIntent";
-                        break;
-                    case "!forward":
-                        command = "MoveForwardIntent";
-                        break;
-                    case "!backwards":
-                        command = "MoveBackwardsIntent";
-                        break;
-                    case "!left":
-                        command = "MoveLeftIntent";
-                        break;
-                    case "!right":
-                        command = "MoveRightIntent";
-                        break;
-                    case "!ping":
-                        command = "PingIntent";
-                        break;
-                    case "!sprint":
-                        command = "SprintIntent";
-                        break;
-                    case "!crouch":
-                        command = "CrouchIntent";
-                        break;
-                    case "!shoot":
-                        command = "AttackIntent";
-                        break;
 
-                }
+
+                if (e.ChatMessage.Message.StartsWith("!reload"))
+                    command = "ReloadIntent";
+                if (e.ChatMessage.Message.StartsWith("!map"))
+                    command = "MapIntent";
+                if (e.ChatMessage.Message.StartsWith("!forward"))
+                    command = "MoveForwardIntent";
+                if (e.ChatMessage.Message.StartsWith("!backwards"))
+                    command = "MoveBackwardsIntent";
+                if (e.ChatMessage.Message.StartsWith("!left"))
+                    command = "MoveLeftIntent";
+                if (e.ChatMessage.Message.StartsWith("!right"))
+                    command = "MoveRightIntent";
+                if (e.ChatMessage.Message.StartsWith("!ping"))
+                    command = "PingIntent";
+                if (e.ChatMessage.Message.StartsWith("!sprint"))
+                    command = "SprintIntent";
+                if (e.ChatMessage.Message.StartsWith("!crouch"))
+                    command = "CrouchIntent";
+                if (e.ChatMessage.Message.StartsWith("!shoot"))
+                    command = "AttackIntent";
+                if (e.ChatMessage.Message.StartsWith("!jump"))
+                    command = "JumpIntent";
+                if (e.ChatMessage.Message.StartsWith("!cut"))
+                    command = "CutChuteIntent";
+                if (e.ChatMessage.Message.StartsWith("!item"))
+                    command = "UseItemIntent";
+                if (e.ChatMessage.Message.StartsWith("!killstreak"))
+                    command = "KillstreakIntent";
+                if (e.ChatMessage.Message.StartsWith("!prone"))
+                    command = "ProneIntent";
+                if (e.ChatMessage.Message.StartsWith("!grenade"))
+                    command = "GrenadeIntent";
+                if (e.ChatMessage.Message.StartsWith("!altgrenade"))
+                    command = "AlternateGrenadeIntent";
+                if (e.ChatMessage.Message.StartsWith("!ads") || e.ChatMessage.Message.StartsWith("!aim"))
+                    command = "AimIntent";
+
+
 
                 var response = await client.PostAsync($"https://warzonevoicecontroller.azurewebsites.net/api/command/{command}", null);
                 Console.WriteLine(response);
             }
 
-}
+        }
 
         private void Client_OnWhisperReceived(object sender, OnWhisperReceivedArgs e)
         {
