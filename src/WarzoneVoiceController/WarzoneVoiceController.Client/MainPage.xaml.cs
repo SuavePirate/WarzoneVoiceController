@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
+﻿using Alexa.NET.Request.Type;
+using Microsoft.AspNetCore.SignalR.Client;
 using SerialArduino;
 using System;
 using System.Collections.Generic;
@@ -68,59 +69,107 @@ namespace WarzoneVoiceController.Client
                 return Task.CompletedTask;
             };
 
-            connection.On("ReloadIntent", async () =>
+            connection.On<IntentRequest>("ReloadIntent", async (intentReqest) =>
             {
                 await HitKey("reload");
                 CommandLog.Text += "\nReloading";
             });
 
-            connection.On("ArmorIntent", async () =>
+            connection.On<IntentRequest>("ArmorIntent", async (intentReqest) =>
             {
                 await HitKey("armor");
                 CommandLog.Text += "\nPutting on armor";
             });
-            connection.On("SprintIntent", async () =>
+            connection.On<IntentRequest>("SprintIntent", async (intentReqest) =>
             {
                 await HitKey("sprint");
                 CommandLog.Text += "\nSprinting";
             });
-            connection.On("AttackIntent", () =>
+            connection.On<IntentRequest>("AttackIntent", (intentReqest) =>
             {
                 ////HitKey(VirtualKey.R);
                 LeftClick();
                 CommandLog.Text += "\nAttack";
             });
-            connection.On("PingIntent", async () =>
+            connection.On<IntentRequest>("PingIntent", async (intentReqest) =>
             {
                 await HitKey("ping");
                 CommandLog.Text += "\nPinging";
             });
-            connection.On("EnemyPingIntent", async () =>
+            connection.On<IntentRequest>("EnemyPingIntent", async (intentReqest) =>
             {
                 await HitKey("ping");
                 await HitKey("ping");
                 CommandLog.Text += "\nPinging enemy";
             });
-            connection.On("CutChuteIntent", async () =>
+            connection.On<IntentRequest>("CutChuteIntent", async (intentReqest) =>
             {
                 await HitKey("cut");
                 CommandLog.Text += "\nCutting chute";
             });
-            connection.On("JumpIntent", async () =>
+            connection.On<IntentRequest>("JumpIntent", async (intentReqest) =>
             {
                 await HitKey("jump");
                 CommandLog.Text += "\nJumping";
             });
-            connection.On("CrouchIntent", async () =>
+            connection.On<IntentRequest>("CrouchIntent", async (intentReqest) =>
             {
                 await HitKey("crouch");
                 CommandLog.Text += "\nCrouching";
             });
-            connection.On("ProneIntent", async () =>
+            connection.On<IntentRequest>("ProneIntent", async (intentReqest) =>
             {
                 //HitKey(VirtualKey.LeftControl);
                 await HitKey("prone");
                 CommandLog.Text += "\nGoing prone";
+            });
+            connection.On<IntentRequest>("JumpIntent", async (intentReqest) =>
+            {
+                await HitKey("jump");
+                CommandLog.Text += "\nJumping";
+            });
+            connection.On<IntentRequest>("SwapWeaponsIntent", async (intentReqest) =>
+            {
+                await HitKey("swap");
+                CommandLog.Text += "\nSwapping";
+            });
+            connection.On<IntentRequest>("MapIntent", async (intentReqest) =>
+            {
+                await HitKey("map");
+                CommandLog.Text += "\nToggling map";
+            });
+            connection.On<IntentRequest>("UseItemIntent", async (intentReqest) =>
+            {
+                await HitKey("item");
+                CommandLog.Text += "\nUsing item";
+            });
+            connection.On<IntentRequest>("MoveForwardIntent", async (intentReqest) =>
+            {
+                var duration = intentReqest.Intent.Slots.ContainsKey("Duration") ? intentReqest.Intent.Slots["Duration"].Value : null;
+
+                await HitKey($"forwards:{duration}");
+                CommandLog.Text += "\nMoving forward";
+            });
+            connection.On<IntentRequest>("MoveBackwardsIntent", async (intentReqest) =>
+            {
+                var duration = intentReqest.Intent.Slots.ContainsKey("Duration") ? intentReqest.Intent.Slots["Duration"].Value : null;
+
+                await HitKey($"backwards:{duration}");
+                CommandLog.Text += "\nMoving backwards";
+            });
+            connection.On<IntentRequest>("MoveLeftIntent", async (intentReqest) =>
+            {
+                var duration = intentReqest.Intent.Slots.ContainsKey("Duration") ? intentReqest.Intent.Slots["Duration"].Value : null;
+
+                await HitKey($"left:{duration}");
+                CommandLog.Text += "\nMoving left";
+            });
+            connection.On<IntentRequest>("MoveRightIntent", async (intentReqest) =>
+            {
+                var duration = intentReqest.Intent.Slots.ContainsKey("Duration") ? intentReqest.Intent.Slots["Duration"].Value : null;
+
+                await HitKey($"right:{duration}");
+                CommandLog.Text += "\nMoving right";
             });
             await connection.StartAsync();
         }

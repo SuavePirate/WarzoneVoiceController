@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
+using WarzoneVoiceController.Api.Configuration;
 using WarzoneVoiceController.Api.Hubs;
 
 namespace WarzoneVoiceController.Api
@@ -32,6 +33,8 @@ namespace WarzoneVoiceController.Api
             services.AddMvc().AddNewtonsoftJson();
             services.AddControllers();
             services.AddSignalR();
+            services.Configure<AlexaSkillSettings>(Configuration.GetSection(nameof(AlexaSkillSettings)));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });

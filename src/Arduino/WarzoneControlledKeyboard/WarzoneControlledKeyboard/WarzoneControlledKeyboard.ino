@@ -25,6 +25,13 @@ void setup() {
   serialCommand.addCommand("jump", Jump );
   serialCommand.addCommand("crouch", Crouch );
   serialCommand.addCommand("prone", Prone );
+  serialCommand.addCommand("forwards", Forward );
+  serialCommand.addCommand("left", Left );
+  serialCommand.addCommand("right", Right );
+  serialCommand.addCommand("map", Map );
+  serialCommand.addCommand("item", UseItem );
+  serialCommand.addCommand("swap", SwapWeapon );
+  serialCommand.addCommand("killstreak", Killstreak );
 
   serialCommand.addCommand("debug", SetDebug );
   serialCommand.setDefaultHandler(UnrecognizedCommand );
@@ -39,6 +46,19 @@ void loop() {
 
 void Reload() {
   SendBasicKeyCommand('r');
+}
+void UseItem() {
+  SendBasicKeyCommand('r');
+}
+void Map() {
+  SendBasicKeyCommand('m');
+}
+void SwapWeapon() {
+  SendBasicKeyCommand('2');
+}
+
+void Killstreak() {
+  SendBasicKeyCommand('3');
 }
 
 void Sprint() {
@@ -65,6 +85,66 @@ void Prone() {
 }
 void Armor() {
   SendBasicKeyCommand('4');
+}
+void Left() {
+
+  char *arg = serialCommand.next();
+
+  Keyboard.begin();
+  Keyboard.press('a');
+  
+  if (arg != NULL) {
+    delay(2500);    
+  } else {
+    delay(2500);    
+  }
+  Keyboard.releaseAll();
+  Keyboard.end();
+}
+
+void Right() {
+
+  char *arg = serialCommand.next();
+
+  Keyboard.begin();
+  Keyboard.press('d');
+   if (arg != NULL) {
+    delay(2500);    
+  } else {
+    delay(2500);    
+  }
+  Keyboard.releaseAll();
+  Keyboard.end();
+}
+void Forward() {
+
+  char *arg = serialCommand.next();
+
+  Keyboard.begin();
+  Keyboard.press('w');
+  
+  if (arg != NULL) {
+    delay(2500);    
+  } else {
+    delay(2500);    
+  }
+  Keyboard.releaseAll();
+  Keyboard.end();
+}
+
+void Backwards() {
+
+  char *arg = serialCommand.next();
+
+  Keyboard.begin();
+  Keyboard.press('s');
+   if (arg != NULL) {
+    delay(2500);    
+  } else {
+    delay(2500);    
+  }
+  Keyboard.releaseAll();
+  Keyboard.end();
 }
 void SendBasicKeyCommand(char key) {
   Keyboard.begin();
