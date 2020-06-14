@@ -128,7 +128,7 @@ namespace WarzoneVoiceController.Client
                 await HitKey("jump");
                 CommandLog.Text += "\nJumping";
             });
-            connection.On<IntentRequest>("SwapWeaponsIntent", async (intentReqest) =>
+            connection.On<IntentRequest>("SwitchWeaponsIntent", async (intentReqest) =>
             {
                 await HitKey("swap");
                 CommandLog.Text += "\nSwapping";
@@ -154,21 +154,21 @@ namespace WarzoneVoiceController.Client
             {
                 var duration = intentReqest.Intent.Slots.ContainsKey("Duration") ? intentReqest.Intent.Slots["Duration"].Value : null;
 
-                await HitKey($"backwards:{duration}");
+                await HitKey($"backwards");
                 CommandLog.Text += "\nMoving backwards";
             });
             connection.On<IntentRequest>("MoveLeftIntent", async (intentReqest) =>
             {
                 var duration = intentReqest.Intent.Slots.ContainsKey("Duration") ? intentReqest.Intent.Slots["Duration"].Value : null;
 
-                await HitKey($"left:{duration}");
+                await HitKey($"left");
                 CommandLog.Text += "\nMoving left";
             });
             connection.On<IntentRequest>("MoveRightIntent", async (intentReqest) =>
             {
                 var duration = intentReqest.Intent.Slots.ContainsKey("Duration") ? intentReqest.Intent.Slots["Duration"].Value : null;
 
-                await HitKey($"right:{duration}");
+                await HitKey($"right");
                 CommandLog.Text += "\nMoving right";
             });
             await connection.StartAsync();

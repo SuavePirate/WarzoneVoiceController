@@ -48,7 +48,7 @@ void Reload() {
   SendBasicKeyCommand('r');
 }
 void UseItem() {
-  SendBasicKeyCommand('r');
+  SendBasicKeyCommand('f');
 }
 void Map() {
   SendBasicKeyCommand('m');
