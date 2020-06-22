@@ -139,6 +139,11 @@ namespace WarzoneVoiceController.Client
                 await HitKey("grenade");
                 CommandLog.Text += "\nGrenade out!";
             });
+            connection.On<IntentRequest>("GrenadeCommand", async (intentReqest) =>
+            {
+                await HitKey("grenade");
+                CommandLog.Text += "\nGrenade out!";
+            });
             connection.On<IntentRequest>("AlternateGrenadeIntent", async (intentReqest) =>
             {
                 await HitKey("altgrenade");

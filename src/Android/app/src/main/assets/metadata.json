@@ -1,0 +1,210 @@
+{
+  "domain": "WarZone",
+  "intents": [
+    {
+      "name": "AMAZON.YesIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "ReloadIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "PingIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "AlternateGrenadeIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "MoveRightIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": [
+        {
+          "name": "Duration",
+          "capture_name": "Duration",
+          "description": "",
+          "type": "integer",
+          "facets": "{\"ordinals\": false, \"range\": [0, 99999]}"
+        }
+      ]
+    },
+    {
+      "name": "SwitchWeaponsIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "ShieldIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "MoveLeftIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": [
+        {
+          "name": "Duration",
+          "capture_name": "Duration",
+          "description": "",
+          "type": "integer",
+          "facets": "{\"ordinals\": false, \"range\": [0, 99999]}"
+        }
+      ]
+    },
+    {
+      "name": "AMAZON.NoIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "SprintIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "MapIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "CrouchIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "UseItemIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "JumpIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "MoveForwardIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": [
+        {
+          "name": "Duration",
+          "capture_name": "Duration",
+          "description": "",
+          "type": "integer",
+          "facets": "{\"ordinals\": false, \"range\": [0, 99999]}"
+        }
+      ]
+    },
+    {
+      "name": "KillstreakIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "AMAZON.RepeatIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "AttackIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "ProneIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "EnemyPingIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "ArmorIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "AMAZON.CancelIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "AMAZON.FallbackIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "GrenadeCommand",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "CutChuteIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": []
+    },
+    {
+      "name": "MoveBackwardsIntent",
+      "description": "",
+      "implicit_slots": [],
+      "slots": [
+        {
+          "name": "Duration",
+          "capture_name": "Duration",
+          "description": "",
+          "type": "integer",
+          "facets": "{\"ordinals\": false, \"range\": [0, 99999]}"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "o",
+    "b_Duration",
+    "i_Duration"
+  ]
+}

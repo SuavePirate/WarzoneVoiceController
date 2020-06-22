@@ -1,0 +1,2 @@
+rootProject.name='Warzone Voice Controller'
+include ':app'
